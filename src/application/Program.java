@@ -1,14 +1,17 @@
 package application;
 
-import java.util.Random;
-import java.util.Scanner;
-
+import model.entities.Country;
+import model.enums.Color;
+import model.enums.Continent;
 import model.lists.CountryList;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
+		System.out.println("Countries amount: " + CountryList.countries().size());
+		
+		/*
 		CountryList cl = new CountryList();
 		
 		Scanner sc = new Scanner(System.in);
@@ -31,7 +34,7 @@ public class Program {
 		}
 
 		sc.close();
-		
+		*/
 	}
 
 }
