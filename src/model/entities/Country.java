@@ -57,11 +57,7 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return getName() + ": "
-				+ getContinent() + ", "
-				+ getPopulation() + "M, $"
-				+ getPib() + "B, and capital's first letter: "
-				+ getCapital();
+		return getName();
 	}
 	
 }
