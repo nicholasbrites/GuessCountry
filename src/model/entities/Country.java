@@ -9,7 +9,7 @@ public class Country {
 	private Double pib;
 	private Double population;
 	private String capital;
-	private Coordinate cordinate;
+	private Coordinate coordinate;
 	private FlagColor flagColor;
 	
 	public Country() {
@@ -17,13 +17,13 @@ public class Country {
 	}
 
 	public Country(String name, Continent continent, Double pib, Double population, String capital, 
-			Coordinate cordinate, FlagColor flagColor) {
+			Coordinate coordinate, FlagColor flagColor) {
 		this.name = name;
 		this.continent = continent;
 		this.pib = pib;
 		this.population = population;
 		this.capital = capital;
-		this.cordinate = cordinate;
+		this.coordinate = coordinate;
 		this.flagColor = flagColor;
 	}
 
@@ -51,8 +51,8 @@ public class Country {
 		return flagColor;
 	}
 
-	public Coordinate getCordinate() {
-		return cordinate;
+	public Coordinate getCoordinate() {
+		return coordinate;
 	}
 
 	@Override

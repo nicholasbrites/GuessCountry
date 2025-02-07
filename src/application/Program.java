@@ -5,61 +5,53 @@ import java.util.Scanner;
 
 import model.entities.Country;
 import model.lists.CountryList;
+import model.services.CountryService;
+import model.services.Messages;
 
 public class Program {
-	
-	public static String comparePib(Country guess, Country answer){
-		if(guess.getPib() > answer.getPib()) {
-			return "\033[31mPIB is lower!\033[0m";
-		}
-		else {
-			if(guess.getPib() < answer.getPib()) {
-				return "\033[31mPIB is higher!\033[0m";
-			}
-			else {
-				return "\033[32mPIB is correct!\033[0m";
-			}
-		}
-	}
 
 	public static void main(String[] args) {
-		
-		System.out.println("Countries amount: " + CountryList.countries().size());
-		
 		Scanner sc = new Scanner(System.in);
 		
 		Country answer = CountryList.countries().get(new Random().nextInt(CountryList.countries().size()));
 		Country guess = null;
+		String name;
 		
-		System.out.println(answer);
+		//System.out.println(answer);
 		
-		for(int i = 1 ; i <= 5 ; i++) {
-			System.out.print("Enter with a country: ");
-			String name = sc.next().toUpperCase();
+		for(int i = 1 ; i <= 6 ; i++) {
+			System.out.println(Messages.textBlue("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"));
 			
-			for(Country country : CountryList.countries()) {
-				if(country.getName().toUpperCase().equals(name.toUpperCase())) {
-					guess = country;
-					break;
+			do {
+				System.out.print(Messages.textBlue("||| Enter with a country: "));
+				name = sc.nextLine().toUpperCase();
+				
+				for(Country country : CountryList.countries()) {
+					if(country.getName().toUpperCase().equals(name.toUpperCase())) {
+						guess = country;
+						break;
+					}
 				}
-			}
-			
-			if(guess == null) {
-				System.out.println("Country not found. Try again.");
-				continue;
-			}
+				if(guess == null) {
+					System.out.println(Messages.textBlue("||| ")  + Messages.textYellow("Country not found. Try again."));
+				}
+			} while (guess == null);
 			
 			if(name.equals(answer.getName().toUpperCase())) {
-				System.out.println("\033[32mThat's correct!\033[0m");
-				System.out.println(comparePib(guess, answer));
+				System.out.println(Messages.modelCompare(guess, answer));
+				System.out.println(Messages.textGreen("\nYOU WON! \nCongratulations."));
 				break;
 			}
 			else {
-				System.out.println("\033[31mIncorrect.\033[0m");
-				System.out.println(comparePib(guess, answer));
+				System.out.println(Messages.modelCompare(guess, answer));
+				if(i == 6) {
+					System.out.println(Messages.textRed("\nYOU LOSE! \n" + answer.getName() + " was the correct answer."));
+				}
 			}
-			System.out.println();
+			guess = null;
+			System.out.println("\n");
 		}
+		
 
 		sc.close();
 	}
