@@ -1,6 +1,10 @@
 package model.services;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.entities.Country;
+import model.enums.Color;
 
 public class CountryService {
 	
@@ -53,6 +57,23 @@ public class CountryService {
 	    String latitudeArrow = guess.getCoordinate().getLatitude() > answer.getCoordinate().getLatitude() ? "↓" : "↑";
 	    String longitudeArrow = guess.getCoordinate().getLongitude() > answer.getCoordinate().getLongitude() ? "←" : "→";
 	    return Messages.textYellow("Direction: " + latitudeArrow + longitudeArrow);
+	}
+	
+	public static String compareFlagColor(Country guess, Country answer) {
+	    Set<Color> answerColors = new HashSet<>(answer.getFlagColor().getColors());
+	    String colors = "";
+
+	    for (Color guessColor : guess.getFlagColor().getColors()) {
+	        if (answerColors.contains(guessColor)) {
+	            colors += Messages.textYellow(" - ") + Messages.textGreen(guessColor.getDisplayName());
+	        } else {
+	            colors += Messages.textYellow(" - ") + Messages.textRed(guessColor.getDisplayName());
+	        }
+	    }
+
+	    return guess.getName().equals(answer.getName())
+	    		? Messages.textGreen("Contains colors on flag") + colors
+                : Messages.textYellow("Contains colors on flag") + colors;
 	}
 	
 }
