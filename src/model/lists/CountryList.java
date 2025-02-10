@@ -16,7 +16,7 @@ public class CountryList {
 		List<Country> countries = new ArrayList<>();
 		
 		// COUNTRY: NAME, CONTINENT, PIB(B), POPULATION(M), INITIALCAPITAL, COORDINATE, FLAGCOLOR
-		countries.add(new Country("Afghanistan", Continent.AFRICA, 20.136, 38.928, "Kabul", new Coordinate(38.4833, 70.9833), new FlagColor(Arrays.asList(Color.BLACK, Color.RED, Color.GREEN, Color.WHITE))));
+		countries.add(new Country("Afghanistan", Continent.ASIA, 20.136, 38.928, "Kabul", new Coordinate(38.4833, 70.9833), new FlagColor(Arrays.asList(Color.BLACK, Color.RED, Color.GREEN, Color.WHITE))));
 		countries.add(new Country("Albania", Continent.EUROPE, 18.256, 2.877, "Tirana", new Coordinate(42.6666, 19.7333), new FlagColor(Arrays.asList(Color.RED, Color.BLACK))));
 		countries.add(new Country("Algeria", Continent.AFRICA, 187.155, 43.851, "Alger", new Coordinate(37.0833, 7.2166), new FlagColor(Arrays.asList(Color.GREEN, Color.WHITE, Color.RED))));
 		countries.add(new Country("Andorra", Continent.EUROPE, 3.302, 79.034, "Andorra-la-Vella", new Coordinate(42.6500, 1.5500), new FlagColor(Arrays.asList(Color.BLUE, Color.YELLOW, Color.RED))));

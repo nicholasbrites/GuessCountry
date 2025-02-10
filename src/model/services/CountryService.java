@@ -1,10 +1,13 @@
 package model.services;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import model.entities.Country;
 import model.enums.Color;
+import model.enums.Direction;
 
 public class CountryService {
 	
@@ -42,21 +45,33 @@ public class CountryService {
 				: Messages.textRed(guess.getCapital().charAt(0) + " is not capital's firts letter!");
 	}
 	
-	private double differenceLatitude(Country guess, Country answer) {
-		return Math.abs(guess.getCoordinate().getLatitude() - answer.getCoordinate().getLatitude());
-	}	
-	private double differenceLongitutde(Country guess, Country answer) {
-		return Math.abs(guess.getCoordinate().getLongitude() - answer.getCoordinate().getLongitude());
-	}
-	
 	public static String compareCoordinate(Country guess, Country answer) {
-		if (guess.getName().equals(answer.getName())) {
-	        return Messages.textGreen("Direction: ⦿");
+		final double limit = 0.75;
+
+	    double latDiff = guess.getCoordinate().getLatitude() - answer.getCoordinate().getLatitude();
+	    double lonDiff = guess.getCoordinate().getLongitude() - answer.getCoordinate().getLongitude();
+
+	    if (guess.getName().equals(answer.getName())) {
+	        return Messages.textGreen("Direction: " + Direction.CENTER.getArrow());
 	    }
 
-	    String latitudeArrow = guess.getCoordinate().getLatitude() > answer.getCoordinate().getLatitude() ? "↓" : "↑";
-	    String longitudeArrow = guess.getCoordinate().getLongitude() > answer.getCoordinate().getLongitude() ? "←" : "→";
-	    return Messages.textYellow("Direction: " + latitudeArrow + longitudeArrow);
+	    boolean ignoreLat = Math.abs(latDiff) < limit;
+	    boolean ignoreLon = Math.abs(lonDiff) < limit;
+
+	    Map<String, Direction> directions = new HashMap<>();
+	    directions.put("N", Direction.NORTH);
+	    directions.put("S", Direction.SOUTH);
+	    directions.put("E", Direction.EAST);
+	    directions.put("W", Direction.WEST);
+	    directions.put("NE", Direction.NORTHEAST);
+	    directions.put("NW", Direction.NORTHWEST);
+	    directions.put("SE", Direction.SOUTHEAST);
+	    directions.put("SW", Direction.SOUTHWEST);
+	    
+	    String key = "";
+	    if (!ignoreLat) key += (latDiff > 0) ? "S" : "N";
+	    if (!ignoreLon) key += (lonDiff > 0) ? "W" : "E";
+	    return Messages.textYellow("Direction: " + directions.getOrDefault(key, Direction.CENTER).getArrow());
 	}
 	
 	public static String compareFlagColor(Country guess, Country answer) {
