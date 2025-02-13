@@ -46,7 +46,7 @@ public class CountryService {
 	}
 	
 	public static String compareCoordinate(Country guess, Country answer) {
-		final double limit = 0.75;
+		final double limit = 1;
 
 	    double latDiff = guess.getCoordinate().getLatitude() - answer.getCoordinate().getLatitude();
 	    double lonDiff = guess.getCoordinate().getLongitude() - answer.getCoordinate().getLongitude();

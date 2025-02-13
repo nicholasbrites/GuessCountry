@@ -33,6 +33,6 @@ public class Messages {
 				+ "||| ") + CountryService.compareCapitalLetter(guess, answer) + textBlue("\n"
 				+ "||| ") + CountryService.compareCoordinate(guess, answer) + textBlue("\n"
 				+ "||| ") + CountryService.compareFlagColor(guess, answer) + textBlue("\n"
-				+ "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+				+ "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 	}
 }

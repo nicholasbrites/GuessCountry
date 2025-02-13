@@ -2,6 +2,10 @@ package model.services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import model.entities.Country;
@@ -60,6 +64,47 @@ public class GameService {
 		System.out.println(Messages.textYellow("You confirmed Daily Challenge. Today is ") + date.format(formatter) + "\n");
 		
 		return dailyChallenge;
+	}
+	
+	public void topFive(List<Country> answer, Scanner sc) {
+		System.out.println(Messages.textYellow("\nThe criterion is POPULATION\n"));
+		Country[] guess = new Country[5];
+		for(int i = 0 ; i < 5 ; i++) {
+			int position;
+			try {
+				do {System.out.print(Messages.textBlue(answer.get(i).getName() + "'s position: "));
+				position = sc.nextInt()-1;;
+				if(position >= 0 && position <= 4) {
+					if(guess[position] != null) {
+						System.out.println(Messages.textYellow("This position is occupied. Try again."));
+						i -= 1;
+						continue;
+					}
+				}
+				else {
+					System.out.println(Messages.textYellow("Invalid position. Try again."));
+				}
+			}while(position < 0 || position > 4);
+			guess[position] = answer.get(i);
+			} catch (Exception e) {
+				i -= 1;
+				System.out.println(Messages.textYellow("Only numbers. Try again."));
+				sc.nextLine();
+			}
+			
+		}
+		answer.sort((b1, b2) -> -b1.getPopulation().compareTo(b2.getPopulation()));
+		
+		System.out.println(Messages.textYellow("\nANSWER:"));
+		for(int i = 0 ; i < 5 ; i++) {
+			if(guess[i].getName().equals(answer.get(i).getName())) {
+				System.out.println(Messages.textGreen((i+1) + " - " + guess[i].getName()));
+			}
+			else {
+				System.out.println(Messages.textRed((i+1) + " - " + guess[i].getName() + " | " + answer.get(i).getName()));
+			}
+		}
+		
 	}
 	
 }
