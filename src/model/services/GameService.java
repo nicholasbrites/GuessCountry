@@ -2,10 +2,7 @@ package model.services;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 import model.entities.Country;
@@ -61,7 +58,7 @@ public class GameService {
 		int dailyChallenge = Math.abs(date.getDayOfMonth()*2 + date.getDayOfMonth()*2 + date.getMonthValue()*5 - date.getYear() % CountryList.countries().size());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		
-		System.out.println(Messages.textYellow("You confirmed Daily Challenge. Today is ") + date.format(formatter) + "\n");
+		System.out.println(Messages.textYellow("\nYou confirmed Daily Challenge. Today is ") + date.format(formatter) + "\n");
 		
 		return dailyChallenge;
 	}
