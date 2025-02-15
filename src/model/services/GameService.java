@@ -93,13 +93,23 @@ public class GameService {
 		answer.sort((b1, b2) -> -b1.getPopulation().compareTo(b2.getPopulation()));
 		
 		System.out.println(Messages.textYellow("\nANSWER:"));
+		int total = 0;
 		for(int i = 0 ; i < 5 ; i++) {
 			if(guess[i].getName().equals(answer.get(i).getName())) {
 				System.out.println(Messages.textGreen((i+1) + " - " + guess[i].getName()));
+				total += 1;
 			}
 			else {
 				System.out.println(Messages.textRed((i+1) + " - " + guess[i].getName() + " | " + answer.get(i).getName()));
 			}
+		}
+		
+		switch (total) {
+		case 0 -> System.out.println(Messages.textRed("\nSCORE: " + total + "/5"));
+		case 1 -> System.out.println(Messages.textRed("\nSCORE: " + total + "/5"));
+		case 4 -> System.out.println(Messages.textRed("\nSCORE: " + total + "/5"));
+		case 5 -> System.out.println(Messages.textGreen("\nSCORE: " + total + "/5"));
+		default -> System.out.println(Messages.textYellow("\nSCORE: " + total + "/5"));
 		}
 		
 	}

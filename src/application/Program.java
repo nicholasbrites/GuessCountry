@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -49,6 +50,13 @@ public class Program {
 				answer.add(CountryList.countries().get(random));
 			}
 			gs.topFive(answer, sc);
+		}
+		
+		System.out.print("\nThanks for playing! Enter any key for end.");
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 		sc.close();
