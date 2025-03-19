@@ -52,12 +52,8 @@ public class Program {
 			gs.topFive(answer, sc);
 		}
 		
-		System.out.print("\nThanks for playing! Enter any key for end.");
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.print("\nThanks for playing! Press 'Enter' for end.");
+		String finish = sc.nextLine() + "a";
 		
 		sc.close();
 	}

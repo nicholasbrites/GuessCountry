@@ -32,6 +32,7 @@ public class Messages {
 				+ "||| ") + CountryService.comparePib(guess, answer) + textBlue("\n"
 				+ "||| ") + CountryService.compareCapitalLetter(guess, answer) + textBlue("\n"
 				+ "||| ") + CountryService.compareCoordinate(guess, answer) + textBlue("\n"
+				+ "||| ") + CountryService.compareDistance(guess, answer) + textBlue("\n"
 				+ "||| ") + CountryService.compareFlagColor(guess, answer) + textBlue("\n"
 				+ "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 	}

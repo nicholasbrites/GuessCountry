@@ -45,6 +45,33 @@ public class CountryService {
 				: Messages.textRed(guess.getCapital().charAt(0) + " is not capital's firts letter!");
 	}
 	
+	private static double[] degreeForKm(Country country) {
+		double[] conversion = new double[2];
+		double latitude = country.getCoordinate().getLatitude();
+		double longitude = country.getCoordinate().getLongitude();
+
+		conversion[0] = latitude*111.32;
+		conversion[1] = longitude*111.32*Math.cos(Math.toRadians(latitude));
+		
+		return conversion;
+	}
+	
+	public static String compareDistance(Country guess, Country answer) {
+		double[] guessConversion = degreeForKm(guess);
+		double[] answerConversion = degreeForKm(answer);
+		
+		double catLatitude = Math.abs(guessConversion[0]-answerConversion[0]);
+		double catLongitude = Math.abs(guessConversion[1]-answerConversion[1]);
+		double distance = Math.sqrt(((catLatitude*catLatitude)+(catLongitude*catLongitude)));
+		
+		if(distance == 0) {
+			return Messages.textGreen("Distance: " + String.format("%.2f", distance) + " Km");
+		}
+		else {
+			return Messages.textYellow("Distance: " + String.format("%.2f", distance) + " Km");
+		}
+	}
+	
 	public static String compareCoordinate(Country guess, Country answer) {
 		final double limit = 1;
 
